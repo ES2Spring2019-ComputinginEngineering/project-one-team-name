@@ -1,5 +1,6 @@
 #pendulum step 1
 
+import math
 import numpy as np
 
 def update_system(acc,pos,vel,time1,time2):
