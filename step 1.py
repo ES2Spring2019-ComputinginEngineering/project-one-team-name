@@ -45,7 +45,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 plt.subplot(3,1,1)
-plt.plot(time, angle, 'ro--') 
+plt.plot(time[:-1], angle, 'ro--') 
 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Angle (rad)')
@@ -55,7 +55,7 @@ plt.grid()
 
 
 plt.subplot(3,1,2)
-plt.plot(time, vel, 'ro--') 
+plt.plot(time[:-1], vel, 'ro--') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Velocity (m/s)')
 plt.title('Velocity vs Time')
@@ -64,7 +64,7 @@ plt.grid()
 
 
 plt.subplot(3,1,3)
-plt.plot(time, acc, 'ro--') 
+plt.plot(time[:-1], acc, 'ro--') 
 plt.xlabel('Time (seconds)')
 plt.ylabel('Acceleration (m/s^2)')
 plt.title('Acceleration vs Time')
