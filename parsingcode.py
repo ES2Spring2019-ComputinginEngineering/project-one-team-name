@@ -1,8 +1,14 @@
 ########################################################################################################
 ###parsing
 ########################################################################################################
+a =input("What is your File Name?")
+if ".txt" in a:
+    filename = a
+else:
+    filename = a + ".txt"
+print(filename) #above ensures proper file is opened for parsing
 
-fin = open("whatever.txt") #whatever.txt is the file the microbit will write
+fin = open(filename)
 
 list_lines = []
 time = []
@@ -10,7 +16,7 @@ accX = []
 accY = []
 accZ = []
 angle = []
-
+#above creates lists for the individual variables
 for line in fin:
     time.append(int(line.split("\t")[0]))
     accX.append(int(line.split("\t")[1]))
