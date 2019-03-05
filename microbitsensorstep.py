@@ -1,6 +1,6 @@
 import random
 import microbit as m
-import step 1 as stp
+import step1 as stp
 filename = "pendulumdata_" + str(r.randint(1,9999))+".txt"
 
 with open(filename, 'w') as my_file:
