@@ -13,9 +13,11 @@
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+import scipy.signal as sig
 
 filename = "pendulumdata_4536length.24.txt"
 print(filename)
+fin = open(filename)
 ###change file name on above line to analyze other data files (DELETE ABOVE LINE IF YOU WANT USER INPUT TO DEFINE FILE NAME)
 
 list_lines = []
@@ -23,106 +25,77 @@ t = []
 accX = []
 accY = []
 accZ = []
-angle = []
+theta = []
 g = 9.8
 #above creates lists for the individual variables
-with open (filename, "r") as file:
-
-    for line in file:
-        
-        line.split(" ")
-        
-        Zacc = float(line[3])
-
-        Yacc = float(line[2])
-        
-        Xacc = float(line[1])
-
-        time = int(line[0])
-
-        accY.append(Yacc)
-        
-        accX.append(Xacc)
-        
-        accZ.append(Zacc)
-
-        t.append(time)
-
-
+for line in fin:
+    t.append(float(line.split(",")[0]))
+    accX.append(int(line.split(",")[1]))
+    accY.append(int(line.split(",")[2]))
+    accZ.append(int(line.split(",")[3].strip()))
+    theta.append(math.atan2(-1*int(line.split(",")[2]),int(line.split(",")[3])))
 
 t = np.asarray(t)
-
-#with open (filename, "r") as file:
- #   for line in file:
-  #      time.append(int(line.split(" ")[0]))
-   #     accX.append(float(line.split(" ")[1]))
-    #    accY.append(float(line.split(" ")[2]))
-     #   accZ.append(float(line.split(" ")[3]))
-        #i = 0
-        #while i <= len(accX):
-         #   angle.append(math.atan(-1* accX[i] / accY[i] * 100))
-          #  i = i + 1
-#above splits the values in the .txt file into individual variables which are entered into arrays from lines 17-21
+theta = np.asarray(theta)
+#above splits the values in the .txt file into individual variables which are entered into arrays/lists from lines 17-21
 print("times: ",t)
 print("accX: ",accX)
 print("accY: ",accY)
 print("accZ: ",accZ)
+###above is just to check that values are OK at this step
 
+t = np.asarray(t)/1000 
+#above converts the list to np.array
 
-t = np.asarray(t)
-
-
-
-y_noisy_filt = sig.medfilt(accY)
-
+y_noisy_filt = sig.medfilt(theta,9)
 y_noisy_filt_pks, _ = sig.find_peaks(y_noisy_filt)
+#above applies filters
+
+#theta = np.arcsin(y_noisy_filt / g)
+#theta_peaks, _ = sig.find_peaks(theta)
+#above calculates theta from accY
 
 
 
-theta = np.arcsin(y_noisy_filt / g)
-
-
-
-plt.subplot(2, 1, 1)
-
+plt.figure()
 plt.plot(t, y_noisy_filt,'g-', t[y_noisy_filt_pks], y_noisy_filt[y_noisy_filt_pks], 'b.')
-
 plt.xlabel('Time (seconds)')
-
 plt.ylabel('Y Acceleration (m/s^2)')
-
 plt.title('Y Acceleration vs Time Filtered')
-
 plt.grid()
-
-
-
-plt.subplot(2, 1, 2)
-
-plt.plot(t, theta,'b-', t[y_noisy_filt_pks], theta[y_noisy_filt_pks], 'g.')
-
-plt.title('Noisy Median Filtered')
-
-plt.xlabel('Time (seconds)')
-
-plt.ylabel('Theta(radians)')
-
-plt.title('Theta vs Time Filtered')
-
-plt.grid()
-
-
-
-plt.tight_layout()
-
 plt.show()
+#above chunk is for plotting accY v.s. time
 
 
 
-peaks = t[y_noisy_filt_pks]
+plt.figure()
+plt.plot(t, theta,'b-', t[y_noisy_filt_pks], theta[y_noisy_filt_pks], 'g.')
+plt.title('Noisy Median Filtered')
+plt.xlabel('Time (seconds)')
+plt.ylabel('Theta(radians)')
+plt.title('Theta vs Time Filtered')
+plt.grid()
+plt.show()
+#above chunk plots angle v.s. time
 
+
+peaks = t[theta_peaks]
 time_difference = np.diff(peaks)
-
 period = str(np.sum(time_difference)/len(time_difference))
-
 print("Period: " + period + "seconds")
+#above chunk plots period by averaging time between peaks
+
+
+
+#Note: Input numbers here to graph in the plot
+#Length_of_Pendulum= [0.18,0.24,0.40,0.42,0.48] 
+#Period_of_Pendulum= [,,,,]
+
+
+#plt.plot(Length_of_Pendulum, Period_of_Pendulum)
+#plt.xlabel('Log(Pendulum Length)')
+#plt.ylabel('Log(Pendulum Period)')
+#plt.yscale('log')
+#plt.xscale('log')
+#plt.title('Pendulum Length and Period') #Note: change title as needed
+#plt.grid(True)
