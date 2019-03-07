@@ -1,6 +1,6 @@
 import random as r
 import microbit as m
-filename = "pendulumdata_" + str(r.randint(1,9999))+"length12.txt" #sets file name that microbit will write data onto
+filename = "pendulumdata_" + str(r.randint(1,9999))+"length5.txt" #sets file name that microbit will write data onto
 
 with open(filename, 'w') as my_file:
     start_time = m.running_time()
