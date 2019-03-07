@@ -1,0 +1,10 @@
+# Pendulum Project by Team Name
+Created by Brett Silverberg and Kristina Puzak
+
+These programs allow their user to log position and acceleration data using a microbit attached to the end of a pendulum. This can be used to view how altering different variables, mainly length of a pendulum, can affect its period. If you graph the length of a pendulum against its period on a log based graph, a direct relationship will be observed between its length and period. This project also contains a simulation program, which will simulate a physical pendulum with any length values that its user inputs, and calculate a period based off of this length. These values can also be graphed on a log based graph, allowing somebody to compare the simulated data to the experimental data. Hypothetically, the same direct comparison should be obvserved.
+
+# instructions
+
+1. First off, you should run the modelingstep.py program to use the simulation we created. This will give you a baseline to compare the rest of the project to, and you can manipulate variables within that code to predict the relationships between variables in the expiramental data
+2. Next, you should construct your own pendulum, using whatever tools you would like, and then attach a microbit to the end of said pendulum. Then you should connect said microbit to your computer, and flash the "microbitsensorstep.py" file onto your microbit. This, when run on your microbit, will create a .txt file that the microbit will write accelerometer values at a given timestep onto. Once you're done collecting your data, press the "b" button on the microbit, and move the file it created from the microbit onto your computer
+3. Parse your data, and then analyze it. In order to do this, run "parsingcode.py" and follow the in-code instructions to read your data. First you need to input the name of the file you want to have read, and then the code will chop up said file into different variables that it will then graph. Mainly, this will allow you to observe the relationship between length of the pendulum and its period. Again, follow the directions in the code if you want to enter different variables.
