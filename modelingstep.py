@@ -5,7 +5,7 @@ import numpy as np
 
 vel = [0] #this section assigns some variables that will be used later
 acc = [0]
-length = 1
+length = 5
 angleNext = math.pi / 6
 angle = [angleNext]
 time = np.linspace(0,10,10000) #declares the timesteps used in data plotting
@@ -74,3 +74,26 @@ plt.xlim((0, 20))
 plt.grid()
 plt.tight_layout()
 plt.show()
+
+#below plots period data for the simulated pendulum
+
+Length_of_Pendulum= [1, 2, 3, 4, 5] 
+Period_of_Pendulum= [1.2, 2.5, 3, 4, 5]
+
+
+
+
+
+plt.plot(Length_of_Pendulum, Period_of_Pendulum)
+
+plt.xlabel('Log(Pendulum Length)')
+
+plt.ylabel('Log(Pendulum Period)')
+
+plt.yscale('log')
+
+plt.xscale('log')
+
+plt.title('Pendulum Length and Period') #Note: change title as needed
+
+plt.grid(True)
