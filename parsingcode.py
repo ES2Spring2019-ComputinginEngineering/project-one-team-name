@@ -32,7 +32,7 @@ import scipy.signal as sig
 
 
 
-filename = "pendulumdata_4536length.24.txt"
+filename = "pendulumdata_6121length5.txt"
 
 print(filename)
 
@@ -178,24 +178,24 @@ print("Period: " + period + "seconds")
 
 #Note: Input numbers here to graph in the plot
 
-#Length_of_Pendulum= [0.18,0.24,0.40,0.42,0.48] 
+Length_of_Pendulum= [0.18,0.24,0.40,0.42] 
 
-#Period_of_Pendulum= [,,,,]
-
-
+Period_of_Pendulum= [0.9647,1.2008,1.8240,2.2600]
 
 
 
-#plt.plot(Length_of_Pendulum, Period_of_Pendulum)
 
-#plt.xlabel('Log(Pendulum Length)')
 
-#plt.ylabel('Log(Pendulum Period)')
+plt.plot(Length_of_Pendulum, Period_of_Pendulum)
 
-#plt.yscale('log')
+plt.xlabel('Log(Pendulum Length)')
 
-#plt.xscale('log')
+plt.ylabel('Log(Pendulum Period)')
 
-#plt.title('Pendulum Length and Period') #Note: change title as needed
+plt.yscale('log')
 
-#plt.grid(True)
+plt.xscale('log')
+
+plt.title('Pendulum Length and Period') #Note: change title as needed
+
+plt.grid(True)
